@@ -38,7 +38,7 @@ function Signup(){
 
         if (message.success){
             console.log("sign up complete. message is: "+message.message)
-            navigate("/todopage")
+            navigate("/login")
         }else{
             console.log("an error occurred, message is: ",message.message)
         }
