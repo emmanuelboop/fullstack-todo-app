@@ -185,7 +185,10 @@ app.delete("/todos/:id", authenticate, async (req, res) => {
 
 })
 
-app.listen(process.env.PORT)
+const PORT = process.env.PORT || 3000
+app.listen(PORT, () => {
+    console.log(`Server running on ${PORT}`)
+})
 
 
 
