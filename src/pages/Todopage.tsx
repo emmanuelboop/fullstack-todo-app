@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react"
 
+const API_URL = import.meta.env.VITE_API_URL
+
 type Todo = {
   id: number,
   text: string,
@@ -16,7 +18,7 @@ function Todopage() {
   const [username, setUsername] = useState("");
 
   async function getUserProfile(){
-    const response = await fetch("http://localhost:3000/me",{
+    const response = await fetch(`${API_URL}/me`,{
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -42,7 +44,7 @@ function Todopage() {
 
   useEffect(() => {
     const fetchTodos = async () => {
-      const response = await fetch("http://localhost:3000/todos", {
+      const response = await fetch(`${API_URL}/todos`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -61,7 +63,7 @@ function Todopage() {
 
 
   async function createTodo(text: string) {
-    const response = await fetch("http://localhost:3000/todos", {
+    const response = await fetch(`${API_URL}/todos`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -86,7 +88,7 @@ function Todopage() {
 
     console.log("in update todo")
 
-    const response = await fetch(`http://localhost:3000/todos/${todoItem.id}`, {
+    const response = await fetch(`${API_URL}/todos/${todoItem.id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -109,7 +111,7 @@ function Todopage() {
 
   async function deleteTodo(id: number){
     console.log("in delete todo")
-    const response = await fetch(`http://localhost:3000/todos/${id}`, {
+    const response = await fetch(`${API_URL}/todos/${id}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",

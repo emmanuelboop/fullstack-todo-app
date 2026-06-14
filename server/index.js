@@ -1,9 +1,12 @@
+require("dotenv").config()
+
 const express = require("express")
 const cors = require("cors")
 const pool = require("./db")
 const jwt = require("jsonwebtoken")
 
-const JWT_SECRET = "my-super-secret-key"
+const JWT_SECRET = process.env.JWT_SECRET
+console.log(JWT_SECRET)
 
 const app = express()
 app.use(cors())

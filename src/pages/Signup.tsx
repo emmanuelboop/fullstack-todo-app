@@ -1,6 +1,8 @@
 import {useState} from "react"
 import { useNavigate } from "react-router-dom"
 
+const API_URL = import.meta.env.VITE_API_URL
+
 function Signup(){
     const [usernameInput, setUsernameInput] = useState("")
     const [passwordInput, setPasswordInput] = useState("")
@@ -20,7 +22,7 @@ function Signup(){
             return
         }
 
-        const response = await fetch("http://localhost:3000/signup", {
+        const response = await fetch(`${API_URL}/signup`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
