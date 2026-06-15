@@ -5,7 +5,6 @@ const cors = require("cors")
 const pool = require("./db")
 const jwt = require("jsonwebtoken")
 const bcrypt = require("bcrypt")
-const { data } = require("react-router-dom")
 
 const JWT_SECRET = process.env.JWT_SECRET
 console.log(JWT_SECRET)
