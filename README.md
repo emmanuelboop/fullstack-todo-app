@@ -32,6 +32,10 @@ https://fullstack-todo-app-production-4f02.up.railway.app
 
 ## Screenshots
 
+### Home Page
+
+![Home](docs/screenshots/home.png)
+
 ### Login Page
 
 ![Login](docs/screenshots/login.png)
