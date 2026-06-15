@@ -5,6 +5,7 @@ const cors = require("cors")
 const pool = require("./db")
 const jwt = require("jsonwebtoken")
 const bcrypt = require("bcrypt")
+const { data } = require("react-router-dom")
 
 const JWT_SECRET = process.env.JWT_SECRET
 console.log(JWT_SECRET)
@@ -89,7 +90,8 @@ app.post("/login", async (req, res) => {
         })
     }
 
-    if (databaseResult.rows[0].password !== password) {
+    const passwordMatches = await bcrypt.compare(password, databaseResult.rows[0].password)
+    if (!passwordMatches) {
         return res.status(400).json({
             success: false,
             message: "password not found"
