@@ -4,6 +4,7 @@ const express = require("express")
 const cors = require("cors")
 const pool = require("./db")
 const jwt = require("jsonwebtoken")
+const bcrypt = require("bcrypt")
 
 const JWT_SECRET = process.env.JWT_SECRET
 console.log(JWT_SECRET)
@@ -33,8 +34,9 @@ app.post("/signup", async (req, res) => {
             return res.status(400).send("username or password is required")
         }
 
+        const hashedPassword = await bcrypt.hash(password,10)
         await pool.query("INSERT INTO users(username, password) VALUES($1, $2)",
-            [username, password]
+            [username, hashedPassword]
         )
 
         console.log("user: ", users)

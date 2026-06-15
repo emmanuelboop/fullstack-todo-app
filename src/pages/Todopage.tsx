@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react"
+import { useNavigate } from "react-router-dom"
 
 const API_URL = import.meta.env.VITE_API_URL
 
@@ -17,6 +18,8 @@ function Todopage() {
   const [itemInput, setItemInput] = useState("")
   const [username, setUsername] = useState("");
 
+  const navigate = useNavigate()
+  
   async function getUserProfile(){
     const response = await fetch(`${API_URL}/me`,{
       method: "GET",
@@ -130,8 +133,15 @@ function Todopage() {
   return (
 
     <div style={{ display: "flex", alignItems: "center", flexDirection: "column", gap: "5px" }}>
-      <div>
-        <h1>Logged in as {username}</h1>
+      <div style = {{display: "flex", width: "50%", justifyContent: "space-between", alignItems: "center"}}>
+        <h2>Logged in as {username}</h2>
+        <button style = {{background: "#dc2626", borderRadius:"5px", padding: "10px 15px", border: "none"}}
+                onClick = {() => {
+                  localStorage.removeItem("token")
+                  navigate("/login")
+                }}>
+          Log out
+        </button>
       </div>
       <div>
         <input
